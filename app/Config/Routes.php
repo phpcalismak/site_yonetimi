@@ -35,11 +35,9 @@ $routes->get('giderler/delete/(:num)', 'GiderlerController::delete/$1');
 $routes->post('giderler/update', 'GiderlerController::update');
 
 //giderler excel
-$routes->get('excelForm', 'GiderlerController::excelForm');
-$routes->post('excelUpload', 'GiderlerController::excelUpload');
-$routes->get('download_template_excel','GiderlerController::download_template_excel');
+
 //giderler kategori
-$routes->post('giderler/kategori','GiderlerController::kategoriEkle');
+$routes->post('giderler/kategori','GiderlerController::kategoriEkle' ,['filter' =>['auth','role']]);
 $routes->get('giderler/giderkategorisil/(:num)','GiderlerController::giderKategoriSil/$1');
 $routes->get('giderler/giderkategoriduzenle/(:num)','GiderlerController::giderKategoriDuzenle/$1');
 
@@ -83,7 +81,7 @@ $routes->get('sidebar','SiteAyarlariController::sidebar',  ['filter' =>['auth','
 // Site ayarlari routes
 
 
-$routes->get('site_ayarlari', 'SiteAyarlariController::index');
+$routes->get('site_ayarlari', 'SiteAyarlariController::index',['filter' =>['auth','role']]);
 $routes->post('site_ayarlari/update', 'SiteAyarlariController::update');
 
 // Blok düzeni routes
@@ -94,26 +92,26 @@ $routes->post('site_ayarlari/update', 'SiteAyarlariController::update');
 // USER ROUTES
 
 // Aidat Borçlarım routes
-$routes->get('aidat_borclarim', 'AidatBorclarimController::index');
+$routes->get('aidat_borclarim', 'AidatBorclarimController::index' , ['filter' =>['auth']]);
 $routes->get('aidat_borclarim/odeme-yap/(:num)', 'AidatBorclarimController::odemeYap/$1');
 
 
 
 
-$routes->get('k_giderler' , 'KGiderlerController::index');
+$routes->get('k_giderler' , 'KGiderlerController::index' ,['filter' =>['auth']]);
 // $routes->get('profiller/(:num)', 'ProfillerController::index/$1');
 $routes->get('iletisim', 'IletisimController::index');
 
 
 //excel
 
-$routes->get('hesap_excel_form' , 'ExcelController::index');
-$routes->post('hesap_excel_upload', 'ExcelController::hesap_excel_upload');
+$routes->get('hesap_excel_form' , 'ExcelController::index',['filter' =>['auth','role']]);
+$routes->post('hesap_excel_upload', 'ExcelController::hesap_excel_upload',);
 $routes->get('hesap_excel_template', 'ExcelController::hesap_excel_template');
 
 //duyurular
 
-$routes->get('duyuru_gonder','DuyuruGonderController::index');
+$routes->get('duyuru_gonder','DuyuruGonderController::index',['filter' =>['auth','role']]);
 $routes->post('duyuru_post','DuyuruGonderController::gonder');
 $routes->post('/duyurugonder/delete/(:num)','DuyuruGonderController::delete/$1');
 
@@ -122,13 +120,13 @@ $routes->post('/duyurugonder/delete/(:num)','DuyuruGonderController::delete/$1')
 $routes->get('duyurular','DuyurularController::index');
 
 
-$routes->get('profil/(:num)','ProfilController::index/$1');                      
+$routes->get('profil/(:num)','ProfilController::index/$1' , ['filter' =>['auth','role']]);                      
 $routes->post('profil/guncelle', 'ProfilController::guncelle');
 $routes->post('profil/ekle', 'ProfilController::ekle');
 
 
 
-$routes->get('toplu_daire','TopluDaireController::index');
+$routes->get('toplu_daire','TopluDaireController::index',  ['filter' =>['auth','role']]);
 $routes->post('toplu_daire_ekle','TopluDaireController::store');
 
 
@@ -140,7 +138,7 @@ $routes->post('personel/update', 'PersonelController::update');
 
 
 
-$routes->get('takvim','TakvimController::index');
+$routes->get('takvim','TakvimController::index' );
 $routes->post('takvim/ekle','TakvimController::ekle');
 
 
@@ -153,15 +151,15 @@ $routes->post("eventAjax", "FullcalendarController::ajax");
 
 
 
-$routes->get('destek_talepleri','DestekController::index');
+$routes->get('destek_talepleri','DestekController::index' ,  ['filter' =>['auth','role']]);
 $routes->post('destek_talepleri/delete/(:num)','DestekController::delete/$1');
 
 
 
-$routes->get('destek_gonder', 'DestekGonderController::index');
+$routes->get('destek_gonder', 'DestekGonderController::index',  ['filter' =>['auth']]);
 $routes->post('destek_gonder/gonder', 'DestekGonderController::gonder');
 
 
 
-$routes->get('k_takvim','KullaniciTakvimController::index');
+$routes->get('k_takvim','KullaniciTakvimController::index',['filter' =>['auth']] );
 
